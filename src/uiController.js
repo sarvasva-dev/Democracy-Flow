@@ -18,32 +18,7 @@ export const initUI = () => {
     setupChatLogic();
     setupMinimizeLogic();
     setupWorkflowLogic();
-    setupBadgeLogic();
-    setupNameLogic(); // New: For Personalization
-};
-
-let userName = "Citizen";
-let quizScore = 0;
-let answeredQuestions = 0;
-
-const setupNameLogic = () => {
-    const input = document.getElementById('user-name-input');
-    const btn = document.getElementById('start-journey-btn');
-    
-    if (btn && input) {
-        btn.onclick = () => {
-            const name = input.value.trim();
-            if (name) {
-                userName = name;
-                // Update AI Title to be personalized
-                document.getElementById('ai-title').innerText = `Namaste, ${userName}!`;
-                // Auto-scroll to start the journey
-                window.scrollTo({ top: window.innerHeight * 0.15, behavior: 'smooth' });
-            } else {
-                input.style.borderColor = "#ef4565";
-            }
-        };
-    }
+    setupBadgeLogic(); // New: Use event listener instead of onclick
 };
 
 const setupBadgeLogic = () => {
@@ -139,39 +114,19 @@ const renderAllStages = () => {
         const allBtns = btn.parentElement.querySelectorAll('.quiz-opt-btn');
         
         allBtns.forEach(b => b.disabled = true);
-        answeredQuestions++;
         
         if (oIdx === stage.quiz.answer) {
-            quizScore++;
             btn.classList.add('correct');
-            feedback.innerText = `✅ Sahi Jawab, ${userName}!`;
+            feedback.innerText = "✅ Correct! Great job.";
             feedback.style.color = "#10b981";
         } else {
             btn.classList.add('incorrect');
             allBtns[stage.quiz.answer].classList.add('correct');
-            feedback.innerText = `❌ Koi baat nahi, ${userName}. Keep learning!`;
+            feedback.innerText = "❌ Incorrect. Keep learning!";
             feedback.style.color = "#ef4565";
         }
         feedback.classList.remove('hidden');
-        updateQuizReport(); // Update finale stats
     };
-};
-
-const updateQuizReport = () => {
-    const scoreEl = document.getElementById('final-score');
-    const totalEl = document.getElementById('total-possible');
-    const report = document.getElementById('quiz-report');
-    const feedback = document.getElementById('iq-feedback');
-    
-    if (scoreEl && totalEl) {
-        scoreEl.innerText = quizScore;
-        totalEl.innerText = electionStages.filter(s => s.quiz).length;
-        
-        if (quizScore >= 4) feedback.innerText = "🌟 You are an Elite Informed Citizen!";
-        else if (quizScore >= 2) feedback.innerText = "👍 Good knowledge! You're ready to vote.";
-        
-        if (answeredQuestions > 0 && report) report.classList.remove('hidden');
-    }
 };
 
 const setupMinimizeLogic = () => {
@@ -256,12 +211,28 @@ const renderSuggestions = (suggestions = demoQueries) => {
 const setupChatLogic = () => {
     const sendBtn = document.getElementById('send-btn');
     const inputField = document.getElementById('user-query');
+    const langSelector = document.querySelector('.lang-selector');
+
+    if (langSelector) {
+        langSelector.onclick = (e) => {
+            const opt = e.target.closest('.lang-opt');
+            if (!opt) return;
+            
+            console.log('Language changed to:', opt.dataset.lang);
+            const opts = langSelector.querySelectorAll('.lang-opt');
+            opts.forEach(o => o.classList.remove('active'));
+            opt.classList.add('active');
+        };
+    }
 
     const triggerSend = () => {
         const query = inputField.value.trim();
+        const activeOpt = document.querySelector('.lang-opt.active');
+        const activeLang = activeOpt ? activeOpt.dataset.lang : "hinglish";
+        
         if (query) {
             inputField.value = '';
-            handleUserQuery(query);
+            handleUserQuery(query, activeLang);
         }
     };
 
@@ -307,17 +278,17 @@ const addMessageToChat = (contentHtml, sender) => {
     }
 };
 
-const handleUserQuery = async (query) => {
+const handleUserQuery = async (query, lang = "hinglish") => {
     // 1. Show User Message
     addMessageToChat(query, 'user');
     
     // 2. Show Loading
     const loadingId = 'loading-' + Date.now();
-    addMessageToChat(`<span id="${loadingId}">Analyzing with Sarvam...</span>`, 'ai');
+    addMessageToChat(`<span id="${loadingId}">Analyzing with Sarvam [${lang.toUpperCase()}]...</span>`, 'ai');
 
     // 3. Fetch AI Response
     try {
-        const data = await getElectionIntelligence(query, currentStageContext);
+        const data = await getElectionIntelligence(query, currentStageContext, lang);
 
         // 4. Remove Loading
         const loadingEl = document.getElementById(loadingId);

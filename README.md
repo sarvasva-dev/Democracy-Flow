@@ -1,57 +1,75 @@
-# 🗳️ Democracy Flow: Indic Election Intelligence
-**A Cinematic, AI-Native Educational Journey for [Prompt Wars](https://hack2skill.com)**
+# 🇮🇳 Democracy Flow: AI-Guided Election Intelligence
 
-Democracy Flow is a high-fidelity, intent-driven web platform designed to simplify the complexities of the Indian electoral process. Built with a "Vibe-First" philosophy, it transforms static election data into a cinematic, scroll-synchronized experience guided by a personalized AI Mentor.
+**A Prompt Wars Submission for "Election Process Education"**
 
----
-
-## 🚀 The AI-Native Stack
-
-| Component | Technology | Rationale |
-| :--- | :--- | :--- |
-| **Indic Intelligence** | **Sarvam AI (Sarvam-2k)** | Native Hinglish/Hindi understanding for the Indian demographic. |
-| **Agentic Orchestration** | **Google Antigravity** | Translating high-level intent into complex GSAP logic and UX. |
-| **Cinematic UI** | **GSAP ScrollTrigger** | True scroll-synchronization for seamless content delivery. |
-| **Indic Styling** | **Vanilla CSS (Glassmorphism)** | A premium, minimalist aesthetic that focuses on clarity. |
+> "Empowering the world's largest democracy through intent-driven engineering and high-fidelity AI mentorship."
 
 ---
 
-## ✨ Winning Features
+## 🌟 The Vision
+Democracy Flow is not just a website; it's a **cinematic educational journey**. While traditional civic education is buried in dry PDFs and complex legal jargon, Democracy Flow transforms the Indian Election Process into a high-end, scroll-synchronized interactive experience. 
 
-### 1. 🧠 Intent-Driven Architecture
-Unlike traditional apps, Democracy Flow was synthesized using agentic prompts. From the vertical scroll sync math to the audio-synthesis logic, every line of code reflects a "Building with Intent" philosophy.
-
-### 2. 🇮🇳 Native Electoral Mentorship
-Integrated with Sarvam AI, the platform handles conversational queries like:
-- *"EVM kaise kaam karta hai?"*
-- *"What happens if NOTA wins?"*
-The AI provides reasoning transparency, explaining "Why this answer?" for every response.
-
-### 3. 🎯 Personalized Learning Journey
-- **Dynamic Context Tracking:** The AI Mentor's context updates automatically as you scroll through Registration, Nomination, and Polling.
-- **Interactive Quizzes:** Real-time knowledge checks at every stage with a final **Voter IQ Report**.
-- **User Personalization:** Addressing users by name to create an empathetic, high-trust educational environment.
-
-### 4. 📱 Premium Mobile Guardrails
-Built for high-end viewing, the platform includes a **Landscape Guardrail** for mobile users, ensuring the cinematic 750px layout is never compromised.
+By merging **GSAP-driven scroll orchestration** with the power of **Sarvam AI**, we provide every citizen with a personal "Election Mentor" that answers questions in their preferred language—Hindi, English, or Hinglish.
 
 ---
 
-## 🛠️ Prompt Strategy (The "Secret Sauce")
+## 🛠️ Technical Architecture (The Sarvam-Only Edge)
 
-For Prompt Wars, we utilized a tiered prompting strategy:
-1. **Structural Intent:** "Synthesize a scroll-based journey where information cards flow vertically in sync with the viewport."
-2. **indic Personalization:** "Fine-tune the AI Mentor to use Hinglish for accessibility while maintaining professional accuracy."
-3. **Sensory Polish:** "Implement a synthesized Web Audio system for subtle UI feedback without external dependencies."
+We made a strategic decision to build a **Sarvam-Native** architecture. This ensures that the platform is deeply optimized for the linguistic and cultural nuances of the Indian demographic.
+
+-   **Intelligence Layer:** `sarvam-m` (Google Gemini based model optimized by Sarvam) handles all complex scenario reasoning ("What happens if NOTA wins?", "Can I register without an address?").
+-   **Linguistic Processing:** Specialized prompt engineering to enforce strict language compliance (Devanagari for Hindi, Latin for Hinglish/English).
+-   **Strict Factuality Protocol:** A zero-hallucination system prompt that forces the AI to cross-reference with ECI (Election Commission of India) guidelines.
+
+---
+
+## 🧠 AI Workflow & Prompt Strategy (For Judges)
+
+The core "magic" of this project lies in the **Intent-Driven Prompt Engineering**. We utilized **Google Antigravity** to architect the following workflows:
+
+1.  **Context-Aware Mentorship:** The AI knows exactly where you are in the journey (e.g., "Nominations" vs "Counting") and adjusts its knowledge base accordingly.
+2.  **JSON-Strict Logic:** All AI responses are forced into a specific JSON schema to ensure the UI remains stable and interactive (dynamic titles, explanation cards, and followup tags).
+3.  **Multilingual Guardrails:** Dual-layered system prompts to ensure that when a user selects a language, the AI obeys it 100%, even if the query is in a different language.
 
 ---
 
-## 🏁 Setup & Deployment
+## 🚀 Key Features
 
-1. **Install:** `npm install`
-2. **Run:** `npm run dev`
-3. **Deploy:** Optimized for **Google Cloud Run** for ultra-low latency.
+-   **Interactive Scroll Journey:** 6 stages of the election lifecycle visualized through a 3D-synchronized path.
+-   **Multilingual AI Mentor:** Real-time query resolution in Hindi, English, and Hinglish.
+-   **Quick Quiz Engine:** Real-time knowledge checks at each stage to reinforce learning.
+-   **Informed Voter Badge:** An achievement system that rewards users for completing the journey.
+-   **Social Integration:** Direct LinkedIn sharing to drive organic civic awareness.
+-   **Landscape Mobile Guardrail:** Optimized for cinematic viewing on mobile devices.
 
 ---
-**Created with ❤️ for Democracy and AI Innovation.**
-[SarthakML.in](https://sarthakml.in)
+
+## 📦 Installation & Setup
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/your-repo/democracy-flow.git
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Set up environment variables (`.env`):
+    ```env
+    VITE_SARVAM_API_KEY=your_sarvam_key_here
+    ```
+4.  Run the development server:
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 🎖️ The "Vibe Coding" Story
+This project was built using **Intent-Based Engineering**. Every feature—from the GSAP scroll synchronization to the multi-language AI toggle—was conceived through high-level technical intent and refined through iterative AI collaboration. 
+
+**Democracy Flow represents the future of software development: where the architect's intent meets AI-native execution.**
+
+---
+
+**Built with ❤️ for Prompt Wars by SarthakML**

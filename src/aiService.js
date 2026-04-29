@@ -3,32 +3,38 @@ const SARVAM_API_KEY = import.meta.env.VITE_SARVAM_API_KEY || "sk_46pgwilu_LUY4l
 /**
  * Sarvam AI Service - Sole Intelligence Layer
  */
-export const getElectionIntelligence = async (userInput, scrollStage = "General") => {
+export const getElectionIntelligence = async (userInput, scrollStage = "General", language = "hinglish") => {
     const prompt = `
-You are an expert Election AI Mentor for the Indian Democratic Process.
-Your goal is to educate the user about Indian elections and reason through complex scenarios.
+You are an expert, high-fidelity Election AI Mentor for the Indian Democratic Process.
+
+STRICT FACTUALITY PROTOCOL:
+- Your primary source is the Election Commission of India (ECI) guidelines.
+- NEVER hallucinate election dates.
+- Stick to process, logic, and law.
+
+// Language instructions moved to system message for forcefulness
 
 Current Context (based on user scroll): [${scrollStage}]
 USER QUERY: "${userInput}"
 
 INSTRUCTIONS:
-1. Explain concepts or scenarios using a mix of simple English and Hinglish.
-2. Ensure the tone is conversational, educational, and easy to understand.
-3. If it's a "what if" scenario, explain the legal ruling clearly.
+1. GREETING PROTOCOL: If the user says 'hi', 'hello', or greets you, respond naturally as a friendly mentor before diving into any context.
+2. Explain concepts or scenarios using the requested language.
+3. Ensure the tone is conversational, educational, and professional.
 4. Always provide an Indian context or real-world example.
 5. Provide a short "reasoning_summary" (1-2 lines) explaining the logic behind your answer.
+6. All parts of the JSON (title, explanation, suggestions, etc.) MUST be in the requested language [${language.toUpperCase()}].
 
 OUTPUT FORMAT:
 You MUST return ONLY valid JSON matching this exact structure, with no markdown formatting or backticks.
-IMPORTANT: Do NOT use double quotes (") inside the text values. Use single quotes (') instead to prevent JSON parsing errors.
 {
-  "type": "explanation | scenario",
-  "title": "A catchy, clear title",
-  "explanation": "The core explanation or legal ruling (can use Hinglish)",
-  "example_or_impact": "A real-world Indian example OR the impact of the scenario",
-  "conclusion": "A strong concluding sentence",
-  "reasoning_summary": "1-2 lines explaining why this happens legally or logically",
-  "suggested_followups": ["Question 1", "Question 2"]
+  "type": "explanation | scenario | greeting",
+  "title": "A catchy, clear title (In [${language.toUpperCase()}])",
+  "explanation": "The core explanation or greeting (In [${language.toUpperCase()}])",
+  "example_or_impact": "A real-world Indian example OR context (In [${language.toUpperCase()}])",
+  "conclusion": "A strong concluding sentence (In [${language.toUpperCase()}])",
+  "reasoning_summary": "1-2 lines logic (In [${language.toUpperCase()}])",
+  "suggested_followups": ["Suggestion 1 in [${language.toUpperCase()}]", "Suggestion 2 in [${language.toUpperCase()}]"]
 }
 `;
 
@@ -42,10 +48,21 @@ IMPORTANT: Do NOT use double quotes (") inside the text values. Use single quote
             body: JSON.stringify({
                 model: "sarvam-m",  
                 messages: [
-                    { role: "system", content: "You strictly output valid JSON." },
-                    { role: "user", content: prompt }
+                    { 
+                        role: "system", 
+                        content: `You strictly output valid JSON. 
+                        You MUST respond 100% in [${language.toUpperCase()}]. 
+                        
+                        RULES for [${language.toUpperCase()}]:
+                        - If English: Use ONLY Latin script. NO Hindi/Hinglish words at all.
+                        - If Hindi: Use ONLY Devanagari script.
+                        - If Hinglish: Use Latin script with a 50/50 mix of Hindi and English words (e.g., 'EVM machine ka use vote dene ke liye kiya jata hai').
+                        
+                        IGNORE the query language. Stick ONLY to the language specified in the system instruction.` 
+                    },
+                    { role: "user", content: prompt + `\n\nREMINDER: RESPOND 100% IN [${language.toUpperCase()}] ONLY.` }
                 ],
-                temperature: 0.6
+                temperature: 0.1 // Lower temperature for more strictness
             })
         });
         

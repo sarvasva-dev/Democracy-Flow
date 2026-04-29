@@ -62,33 +62,55 @@ gsap.to(ball, {
         const hero = document.querySelector('.hero');
         const finale = document.getElementById('finale');
         const sidebar = document.getElementById('ai-sidebar');
+        const isPortrait = window.innerHeight > window.innerWidth;
 
-        // Initial landing state vs scrolling state (Reveals at 5% scroll)
-        if (progress > 0.05) {
-            if(scrollPrompt) scrollPrompt.style.opacity = '0';
-            if(hero) hero.classList.add('scrolled');
-            if(contextCard) { contextCard.style.opacity = '1'; contextCard.style.pointerEvents = 'all'; }
-            if(timeline) { timeline.style.opacity = '1'; timeline.style.pointerEvents = 'all'; }
-            if(sidebar) { sidebar.style.opacity = '1'; sidebar.style.pointerEvents = 'all'; }
-        } else {
-            if(scrollPrompt) scrollPrompt.style.opacity = '1';
-            if(hero) hero.classList.remove('scrolled');
-            if(contextCard) { contextCard.style.opacity = '0'; contextCard.style.pointerEvents = 'none'; }
-            if(timeline) { timeline.style.opacity = '0'; timeline.style.pointerEvents = 'none'; }
-            if(sidebar) { sidebar.style.opacity = '0'; sidebar.style.pointerEvents = 'none'; }
+        // Global Orientation Guard: If Portrait on mobile, hide UI
+        if (isPortrait && window.innerWidth < 1000) {
+            if(hero) hero.classList.add('hidden');
+            if(contextCard) contextCard.classList.add('hidden');
+            if(timeline) timeline.classList.add('hidden');
+            if(sidebar) sidebar.classList.add('hidden');
+            return; // Stop rendering UI if in wrong orientation
         }
 
-        // Handle Finale visibility
-        if (progress > 0.92) {
+        // --- Standard UI Logic (Only if not in restricted portrait) ---
+        
+        // Initial landing state vs scrolling state (Reveals at 5% scroll)
+        if (progress > 0.05) {
+            if(scrollPrompt) scrollPrompt.classList.add('hidden');
+            if(hero) hero.classList.add('scrolled');
+            if(contextCard) contextCard.classList.remove('hidden');
+            if(timeline) timeline.classList.remove('hidden');
+            if(sidebar) sidebar.classList.remove('hidden');
+        } else {
+            if(scrollPrompt) scrollPrompt.classList.remove('hidden');
+            if(hero) {
+                hero.classList.remove('scrolled');
+                hero.classList.remove('hidden'); // Ensure logo is visible on landing
+            }
+            if(contextCard) contextCard.classList.add('hidden');
+            if(timeline) timeline.classList.add('hidden');
+            if(sidebar) sidebar.classList.add('hidden');
+        }
+
+        // Handle Finale visibility (Trigger only at the absolute end)
+        if (progress > 0.99) {
             if(finale) finale.classList.add('active');
-            if(sidebar) { sidebar.style.opacity = '0'; sidebar.style.pointerEvents = 'none'; }
+            if(hero) hero.style.opacity = '0'; 
             if(contextCard) contextCard.style.opacity = '0';
             if(timeline) timeline.style.opacity = '0';
+            if(sidebar) { sidebar.style.opacity = '0'; sidebar.style.pointerEvents = 'none'; }
         } else {
             if(finale) finale.classList.remove('active');
-            if(sidebar) { sidebar.style.opacity = '1'; sidebar.style.pointerEvents = 'all'; }
+            if(hero) hero.style.opacity = '1';
             if(contextCard) contextCard.style.opacity = '1';
             if(timeline) timeline.style.opacity = '1';
+            if(sidebar) { 
+                if(!sidebar.classList.contains('hidden')) {
+                    sidebar.style.opacity = '1'; 
+                    sidebar.style.pointerEvents = 'all'; 
+                }
+            }
         }
 
         const stageIndex = Math.min(
