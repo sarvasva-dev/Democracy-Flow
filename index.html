@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Democracy Flow | Election Process Education</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Background Canvas for GSAP Animation -->
+    <canvas class="canvas"></canvas>
+
+    <!-- UI Overlay -->
+    <main id="app">
+        <!-- Landscape Warning for Mobile -->
+        <div id="landscape-warning">
+            <div class="warning-content glass">
+                <div class="rotate-icon">📱</div>
+                <h2>Cinematic Experience</h2>
+                <p>Please rotate your device to <strong>Landscape Mode</strong> for the best journey through democracy.</p>
+            </div>
+        </div>
+
+        <header class="hero">
+            <h1 class="main-title">Democracy<span>Flow</span></h1>
+            <p class="subtitle">AI-Guided Election Intelligence</p>
+            
+            <!-- Personalization Input -->
+            <div id="name-input-container" class="name-box glass">
+                <input type="text" id="user-name-input" placeholder="Enter your name to begin..." autocomplete="off">
+                <button id="start-journey-btn">Start Journey →</button>
+            </div>
+        </header>
+
+        <!-- Workflow Modal -->
+        <div id="workflow-modal" class="modal-overlay hidden">
+            <div class="modal-content glass">
+                <button class="close-modal">&times;</button>
+                <h2>Building with Intent</h2>
+                <div class="workflow-steps">
+                    <div class="step">
+                        <h3>1. Agentic Orchestration</h3>
+                        <p>Powered by <strong>Google Antigravity</strong> to translate high-level intent into complex GSAP scroll logic and 3D interactions.</p>
+                    </div>
+                    <div class="step">
+                        <h3>2. Indic Intelligence</h3>
+                        <p>Integrated <strong>Sarvam AI</strong> (Sarvam-2k) for high-fidelity, context-aware electoral mentorship in Hinglish.</p>
+                    </div>
+                    <div class="step">
+                        <h3>3. Cinematic UX</h3>
+                        <p>Intent-driven synthesis of Blender frame-sequences and textual context using true scroll synchronization.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <p>Submitting for <strong>Prompt Wars</strong> | Hack2Skill</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator" id="scroll-prompt">
+            <span>Scroll to explore</span>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+
+        <!-- Dynamic Timeline Navigator -->
+        <nav class="timeline-nav hidden">
+            <div class="progress-bar"></div>
+            <ul id="stage-list">
+                <!-- Populated via JS -->
+            </ul>
+        </nav>
+
+        <!-- AI Assistant Sidebar -->
+        <aside id="ai-sidebar" class="ai-sidebar glass hidden">
+            <div class="ai-header">
+                <div class="ai-header-content">
+                    <div class="ai-status">
+                        <span class="pulse"></span>
+                        AI Election Mentor
+                        <!-- Integrated Workflow Button -->
+                        <button id="workflow-btn" class="workflow-badge glass">
+                            ✨ Workflow
+                        </button>
+                    </div>
+                    <h2 id="ai-title">Ask Anything</h2>
+                </div>
+                <button id="toggle-chat-btn" class="toggle-chat-btn">−</button>
+            </div>
+            
+            <div id="ai-chat-history" class="chat-history">
+                <div class="message ai-message">
+                    Welcome! I'm your AI Election Mentor. Scroll down to explore the election lifecycle, or ask me a specific question about how democracy works!
+                </div>
+            </div>
+
+            <div class="ai-input-area">
+                <div class="suggestions" id="suggestions">
+                    <!-- Populated via JS -->
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="user-query" placeholder="Type your question..." />
+                    <button id="send-btn">
+                        <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contextual Content Overlay -->
+        <section id="context-display" class="context-card glass hidden">
+            <div id="stages-scroll-container" class="stages-scroll-container">
+                <!-- Populated via JS with all stages -->
+            </div>
+        </section>
+
+        <!-- Final Section -->
+        <section id="finale" class="finale-section">
+            <div class="finale-content glass">
+                <h2>Your Journey to an Informed Vote</h2>
+                <p>Every vote counts in shaping the future of the nation. Stay informed, stay empowered.</p>
+                <a href="https://sarthakml.in" target="_blank" rel="noopener noreferrer">
+                    <img src="/Late.JPG" alt="Democracy Finale" class="finale-img">
+                </a>
+                <div id="quiz-report" class="quiz-report-card hidden glass">
+                    <h3>Your Voter IQ Report</h3>
+                    <div class="score-circle">
+                        <span id="final-score">0</span>/<span id="total-possible">5</span>
+                    </div>
+                    <p id="iq-feedback">Keep learning to become a pro voter!</p>
+                </div>
+
+                <div class="finale-actions">
+                    <button id="claim-badge-btn" class="badge-btn glass">
+                        🏅 Claim Informed Voter Badge
+                    </button>
+                    <a id="share-linkedin" href="#" target="_blank" class="share-btn glass hidden">
+                        🔗 Share Achievement
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
