@@ -65,17 +65,17 @@ gsap.to(ball, {
 
         // Initial landing state vs scrolling state (Reveals at 5% scroll)
         if (progress > 0.05) {
-            if(scrollPrompt) scrollPrompt.classList.add('v-hidden');
+            if(scrollPrompt) scrollPrompt.style.opacity = '0';
             if(hero) hero.classList.add('scrolled');
-            if(contextCard) contextCard.classList.add('show');
-            if(timeline) timeline.classList.add('show');
-            if(sidebar) sidebar.classList.add('show');
+            if(contextCard) { contextCard.style.opacity = '1'; contextCard.style.pointerEvents = 'all'; }
+            if(timeline) { timeline.style.opacity = '1'; timeline.style.pointerEvents = 'all'; }
+            if(sidebar) { sidebar.style.opacity = '1'; sidebar.style.pointerEvents = 'all'; }
         } else {
-            if(scrollPrompt) scrollPrompt.classList.remove('v-hidden');
+            if(scrollPrompt) scrollPrompt.style.opacity = '1';
             if(hero) hero.classList.remove('scrolled');
-            if(contextCard) contextCard.classList.remove('show');
-            if(timeline) timeline.classList.remove('show');
-            if(sidebar) sidebar.classList.remove('show');
+            if(contextCard) { contextCard.style.opacity = '0'; contextCard.style.pointerEvents = 'none'; }
+            if(timeline) { timeline.style.opacity = '0'; timeline.style.pointerEvents = 'none'; }
+            if(sidebar) { sidebar.style.opacity = '0'; sidebar.style.pointerEvents = 'none'; }
         }
 
         // Handle Finale visibility

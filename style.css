@@ -16,6 +16,13 @@
     box-sizing: border-box;
 }
 
+#app {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    min-height: 100vh;
+}
+
 body {
     font-family: 'Outfit', sans-serif;
     background-color: var(--bg-dark);
