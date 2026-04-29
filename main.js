@@ -65,21 +65,17 @@ gsap.to(ball, {
 
         // Initial landing state vs scrolling state (Reveals at 5% scroll)
         if (progress > 0.05) {
-            if(scrollPrompt) {
-                scrollPrompt.classList.add('hidden');
-            }
+            if(scrollPrompt) scrollPrompt.classList.add('v-hidden');
             if(hero) hero.classList.add('scrolled');
-            if(contextCard) contextCard.classList.remove('hidden');
-            if(timeline) timeline.classList.remove('hidden');
-            if(sidebar) sidebar.classList.remove('hidden');
+            if(contextCard) contextCard.classList.add('show');
+            if(timeline) timeline.classList.add('show');
+            if(sidebar) sidebar.classList.add('show');
         } else {
-            if(scrollPrompt) {
-                scrollPrompt.classList.remove('hidden');
-            }
+            if(scrollPrompt) scrollPrompt.classList.remove('v-hidden');
             if(hero) hero.classList.remove('scrolled');
-            if(contextCard) contextCard.classList.add('hidden');
-            if(timeline) timeline.classList.add('hidden');
-            if(sidebar) sidebar.classList.add('hidden');
+            if(contextCard) contextCard.classList.remove('show');
+            if(timeline) timeline.classList.remove('show');
+            if(sidebar) sidebar.classList.remove('show');
         }
 
         // Handle Finale visibility

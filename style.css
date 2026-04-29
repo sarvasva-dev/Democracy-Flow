@@ -677,6 +677,18 @@ canvas {
     color: white;
 }
 
+.v-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+.show {
+    opacity: 1 !important;
+    pointer-events: all !important;
+    visibility: visible !important;
+}
+
 @media (max-width: 900px) {
     .workflow-badge {
         top: 10px;

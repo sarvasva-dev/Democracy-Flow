@@ -69,7 +69,7 @@
         </div>
 
         <!-- Dynamic Timeline Navigator -->
-        <nav class="timeline-nav hidden">
+        <nav id="timeline-nav" class="timeline-nav v-hidden">
             <div class="progress-bar"></div>
             <ul id="stage-list">
                 <!-- Populated via JS -->
@@ -77,7 +77,7 @@
         </nav>
 
         <!-- AI Assistant Sidebar -->
-        <aside id="ai-sidebar" class="ai-sidebar glass hidden">
+        <aside id="ai-sidebar" class="ai-sidebar glass v-hidden">
             <div class="ai-header">
                 <div class="ai-header-content">
                     <div class="ai-status">
@@ -113,7 +113,7 @@
         </aside>
 
         <!-- Contextual Content Overlay -->
-        <section id="context-display" class="context-card glass hidden">
+        <section id="context-display" class="context-card glass v-hidden">
             <div id="stages-scroll-container" class="stages-scroll-container">
                 <!-- Populated via JS with all stages -->
             </div>
