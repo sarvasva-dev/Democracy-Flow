@@ -153,11 +153,6 @@ export const updateStageUI = (stageId, progress = null) => {
     const stageIndex = electionStages.findIndex(s => s.id === stageId);
     if (stageIndex === -1) return;
     
-    // Stage change log
-    if (currentStageContext !== electionStages[stageIndex].title) {
-        console.log('Stage changed to:', electionStages[stageIndex].title);
-    }
-    
     currentStageContext = electionStages[stageIndex].title;
 
     const scrollContainer = document.getElementById('stages-scroll-container');
@@ -218,7 +213,6 @@ const setupChatLogic = () => {
             const opt = e.target.closest('.lang-opt');
             if (!opt) return;
             
-            console.log('Language changed to:', opt.dataset.lang);
             const opts = langSelector.querySelectorAll('.lang-opt');
             opts.forEach(o => o.classList.remove('active'));
             opt.classList.add('active');
@@ -316,7 +310,9 @@ const handleUserQuery = async (query, lang = "hinglish") => {
             renderSuggestions(data.suggested_followups.slice(0, 3));
         }
     } catch (error) {
-        console.error("AI Error:", error);
+        if (import.meta.env.DEV) {
+            console.error("AI Error:", error);
+        }
         const loadingEl = document.getElementById(loadingId);
         if(loadingEl) {
             loadingEl.innerText = "⚠️ Service temporarily busy. I'm an AI specialized in Indian Elections—try asking about Voter IDs or EVMs!";

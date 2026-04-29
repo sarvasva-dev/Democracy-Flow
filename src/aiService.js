@@ -1,9 +1,48 @@
-const SARVAM_API_KEY = import.meta.env.VITE_SARVAM_API_KEY || "sk_46pgwilu_LUY4lB7vZp2B1IrRksHIHSua";
+const SARVAM_API_KEY = import.meta.env.VITE_SARVAM_API_KEY;
+
+const fallbackResponses = {
+    english: {
+        title: "Service Temporarily Offline",
+        explanation: "I am having trouble connecting to the election mentor service right now. Please check the API key or internet connection.",
+        example_or_impact: "For example, if the Sarvam API key is missing, the app cannot generate live election answers.",
+        conclusion: "Add a valid VITE_SARVAM_API_KEY and try again.",
+        reasoning_summary: "The request could not reach the configured AI service.",
+    },
+    hindi: {
+        title: "सेवा अस्थायी रूप से बंद है",
+        explanation: "अभी चुनाव मेंटर सेवा से जुड़ने में समस्या आ रही है। कृपया API key या internet connection जांचें।",
+        example_or_impact: "उदाहरण के लिए, Sarvam API key न होने पर app live election answers नहीं बना पाएगा।",
+        conclusion: "सही VITE_SARVAM_API_KEY जोड़कर दोबारा कोशिश करें।",
+        reasoning_summary: "Configured AI service तक request पूरी नहीं पहुंच पाई।",
+    },
+    hinglish: {
+        title: "Service abhi temporarily offline hai",
+        explanation: "Election mentor service se connect karne mein abhi issue aa raha hai. API key ya internet connection check karo.",
+        example_or_impact: "Example ke liye, agar Sarvam API key missing hai to app live election answers generate nahi kar paayega.",
+        conclusion: "Valid VITE_SARVAM_API_KEY add karke phir try karo.",
+        reasoning_summary: "Request configured AI service tak successfully complete nahi ho paayi.",
+    }
+};
+
+const createFallbackResponse = (language = "hinglish", errorMessage = "AI service unavailable") => {
+    const fallback = fallbackResponses[language] || fallbackResponses.hinglish;
+
+    return {
+        type: "error",
+        ...fallback,
+        suggested_followups: [],
+        source: `System Error: ${errorMessage}`
+    };
+};
 
 /**
  * Sarvam AI Service - Sole Intelligence Layer
  */
 export const getElectionIntelligence = async (userInput, scrollStage = "General", language = "hinglish") => {
+    if (!SARVAM_API_KEY) {
+        return createFallbackResponse(language, "Missing VITE_SARVAM_API_KEY");
+    }
+
     const prompt = `
 You are an expert, high-fidelity Election AI Mentor for the Indian Democratic Process.
 
@@ -86,22 +125,17 @@ You MUST return ONLY valid JSON matching this exact structure, with no markdown 
         try {
             jsonResponse = JSON.parse(content);
         } catch (parseError) {
-            console.error("Failed to parse this content:", content);
+            if (import.meta.env.DEV) {
+                console.error("Failed to parse this content:", content);
+            }
             throw new Error("JSON Parse Error: " + parseError.message);
         }
         jsonResponse.source = "Sarvam AI";
         return jsonResponse;
     } catch (error) {
-        console.error("Sarvam Generation Error:", error);
-        return {
-            type: "error",
-            title: "System Offline",
-            explanation: "I'm having trouble connecting to the election database right now. Please check your internet connection.",
-            example_or_impact: "Error: " + error.message,
-            conclusion: "Please try asking again.",
-            reasoning_summary: "Failed to fetch response from API.",
-            suggested_followups: [],
-            source: "System Error"
-        };
+        if (import.meta.env.DEV) {
+            console.error("Sarvam Generation Error:", error);
+        }
+        return createFallbackResponse(language, error.message);
     }
 };

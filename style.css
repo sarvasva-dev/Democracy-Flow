@@ -456,7 +456,7 @@ canvas {
     .context-card { width: 350px; }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px) and (orientation: portrait) {
     .ai-sidebar { position: relative; width: 100%; top: 0; right: 0; bottom: 0; margin-top: 100vh; height: auto; }
     .context-card { position: relative; width: calc(100% - 80px); bottom: 0; margin-top: 20px; }
     .hero { position: relative; top: 20px; left: 20px; }
@@ -637,7 +637,7 @@ canvas {
     border-color: var(--primary);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 900px) and (orientation: portrait) {
     .workflow-badge {
         top: 10px;
         right: 10px;
