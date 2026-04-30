@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Democracy Flow | Election Process Education</title>
+    <meta property="og:title" content="Democracy Flow: AI-Guided Election Intelligence">
+    <meta property="og:description" content="An interactive, cinematic journey through the Indian Election process powered by Sarvam AI.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>Democracy Flow | AI Election Mentor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -73,26 +77,26 @@
         <!-- AI Assistant Sidebar -->
         <aside id="ai-sidebar" class="ai-sidebar glass hidden">
             <div class="ai-header">
-                <div class="ai-header-content">
+                <div class="ai-header-content" role="banner">
                     <div class="ai-status">
-                        <span class="pulse"></span>
-                        AI Election Mentor
+                        <span class="status-dot"></span>
+                        <span>AI ELECTION MENTOR</span>
                         <!-- Integrated Workflow Button -->
-                        <button id="workflow-btn" class="workflow-badge glass">
+                        <button id="workflow-btn" class="workflow-badge glass" aria-label="View AI Workflow">
                             ✨ Workflow
                         </button>
                     </div>
                     <h2 id="ai-title">Ask Anything</h2>
-                    <div class="lang-selector">
-                        <span class="lang-opt active" data-lang="hinglish">Hinglish</span>
-                        <span class="lang-opt" data-lang="hindi">हिंदी</span>
-                        <span class="lang-opt" data-lang="english">English</span>
+                    <div class="lang-selector" role="radiogroup" aria-label="Select Language">
+                        <span class="lang-opt active" data-lang="hinglish" role="radio" aria-checked="true" tabindex="0">Hinglish</span>
+                        <span class="lang-opt" data-lang="hindi" role="radio" aria-checked="false" tabindex="0">हिंदी</span>
+                        <span class="lang-opt" data-lang="english" role="radio" aria-checked="false" tabindex="0">English</span>
                     </div>
                 </div>
-                <button id="toggle-chat-btn" class="toggle-chat-btn">−</button>
+                <button id="toggle-chat-btn" class="toggle-chat-btn" aria-label="Toggle Chat Window">−</button>
             </div>
             
-            <div id="ai-chat-history" class="chat-history">
+            <div id="ai-chat-history" class="chat-history" aria-live="polite">
                 <div class="message ai-message">
                     Welcome! I'm your AI Election Mentor. Scroll down to explore the election lifecycle, or ask me a specific question about how democracy works!
                 </div>
@@ -103,8 +107,8 @@
                     <!-- Populated via JS -->
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" id="user-query" placeholder="Type your question..." />
-                    <button id="send-btn">
+                    <input type="text" id="user-query" placeholder="Type your question..." aria-label="Election query input" />
+                    <button id="send-btn" aria-label="Send query">
                         <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
                     </button>
                 </div>
