@@ -15,16 +15,16 @@
 </head>
 <body>
     <!-- Background Canvas for GSAP Animation -->
-    <canvas class="canvas"></canvas>
+    <canvas class="canvas" aria-hidden="true"></canvas>
 
     <!-- UI Overlay -->
     <main id="app">
         <!-- Landscape Warning for Mobile -->
-        <div id="landscape-warning">
+        <div id="landscape-warning" role="alertdialog" aria-labelledby="landscape-title" aria-describedby="landscape-description">
             <div class="warning-content glass">
                 <div class="rotate-icon">📱</div>
-                <h2>Cinematic Experience</h2>
-                <p>Please rotate your device to <strong>Landscape Mode</strong> for the best journey through democracy.</p>
+                <h2 id="landscape-title">Cinematic Experience</h2>
+                <p id="landscape-description">Please rotate your device to <strong>Landscape Mode</strong> for the best journey through democracy.</p>
             </div>
         </div>
 
@@ -34,10 +34,10 @@
         </header>
 
         <!-- Workflow Modal -->
-        <div id="workflow-modal" class="modal-overlay hidden">
+        <div id="workflow-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="workflow-title" aria-hidden="true">
             <div class="modal-content glass">
-                <button class="close-modal">&times;</button>
-                <h2>Building with Intent</h2>
+                <button class="close-modal" type="button" aria-label="Close workflow dialog">&times;</button>
+                <h2 id="workflow-title">Building with Intent</h2>
                 <div class="workflow-steps">
                     <div class="step">
                         <h3>1. Agentic Orchestration</h3>
@@ -75,14 +75,14 @@
         </nav>
 
         <!-- AI Assistant Sidebar -->
-        <aside id="ai-sidebar" class="ai-sidebar glass hidden">
+        <aside id="ai-sidebar" class="ai-sidebar glass hidden" aria-labelledby="ai-title">
             <div class="ai-header">
                 <div class="ai-header-content" role="banner">
                     <div class="ai-status">
                         <span class="status-dot"></span>
                         <span>AI ELECTION MENTOR</span>
                         <!-- Integrated Workflow Button -->
-                        <button id="workflow-btn" class="workflow-badge glass" aria-label="View AI Workflow">
+                        <button id="workflow-btn" class="workflow-badge glass" aria-label="View AI Workflow" aria-controls="workflow-modal" aria-expanded="false">
                             ✨ Workflow
                         </button>
                     </div>
@@ -93,17 +93,17 @@
                         <span class="lang-opt" data-lang="english" role="radio" aria-checked="false" tabindex="0">English</span>
                     </div>
                 </div>
-                <button id="toggle-chat-btn" class="toggle-chat-btn" aria-label="Toggle Chat Window">−</button>
+                <button id="toggle-chat-btn" class="toggle-chat-btn" type="button" aria-label="Toggle Chat Window" aria-expanded="true" aria-controls="ai-chat-history">−</button>
             </div>
             
-            <div id="ai-chat-history" class="chat-history" aria-live="polite">
+            <div id="ai-chat-history" class="chat-history" aria-live="polite" role="log" aria-relevant="additions text">
                 <div class="message ai-message">
                     Welcome! I'm your AI Election Mentor. Scroll down to explore the election lifecycle, or ask me a specific question about how democracy works!
                 </div>
             </div>
 
             <div class="ai-input-area">
-                <div class="suggestions" id="suggestions">
+                <div class="suggestions" id="suggestions" role="list" aria-label="Suggested election questions">
                     <!-- Populated via JS -->
                 </div>
                 <div class="input-wrapper">
@@ -116,16 +116,16 @@
         </aside>
 
         <!-- Contextual Content Overlay -->
-        <section id="context-display" class="context-card glass hidden">
+        <section id="context-display" class="context-card glass hidden" aria-label="Election process stage details" aria-live="polite">
             <div id="stages-scroll-container" class="stages-scroll-container">
                 <!-- Populated via JS with all stages -->
             </div>
         </section>
 
         <!-- Final Section -->
-        <section id="finale" class="finale-section">
+        <section id="finale" class="finale-section" aria-labelledby="finale-title">
             <div class="finale-content glass">
-                <h2>Your Journey to an Informed Vote</h2>
+                <h2 id="finale-title">Your Journey to an Informed Vote</h2>
                 <p>Every vote counts in shaping the future of the nation. Stay informed, stay empowered.</p>
                 <a href="https://sarthakml.in" target="_blank" rel="noopener noreferrer">
                     <img src="/Late.JPG" alt="Democracy Finale" class="finale-img">

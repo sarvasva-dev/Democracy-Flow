@@ -17,6 +17,8 @@ The project uses a Sarvam-native intelligence layer so the AI experience can bet
 - **Intelligence layer:** `sarvam-m` handles scenario reasoning such as "What happens if NOTA wins?" or "Can I register without an address?"
 - **Linguistic processing:** Prompt guardrails enforce the selected language mode: Devanagari for Hindi, Latin script for English and Hinglish.
 - **ECI-aligned factuality guardrails:** The system prompt instructs the AI to stay aligned with Election Commission of India process, avoid hallucinated dates, and stick to election logic and law.
+- **Google services layer:** Firebase Web SDK initializes optional Analytics and Performance Monitoring from `VITE_FIREBASE_*` environment variables, then tracks app opens, mentor questions, language switches, quiz answers, workflow views, and badge claims.
+- **Security hardening:** Secrets are read only from environment variables, user input is bounded before it reaches the model, and rendered AI/user content is HTML-escaped before entering the chat UI.
 
 ## AI Workflow and Prompt Strategy
 
@@ -50,6 +52,13 @@ The core of the project is intent-driven prompt engineering, shaped for a fast P
 3. Create a local `.env` file:
     ```env
     VITE_SARVAM_API_KEY=your_sarvam_key_here
+    VITE_FIREBASE_API_KEY=your_firebase_api_key
+    VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+    VITE_FIREBASE_PROJECT_ID=your_project_id
+    VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+    VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+    VITE_FIREBASE_APP_ID=your_firebase_app_id
+    VITE_FIREBASE_MEASUREMENT_ID=your_ga_measurement_id
     ```
 
 4. Run the development server:
@@ -60,6 +69,11 @@ The core of the project is intent-driven prompt engineering, shaped for a fast P
 5. Build for production:
     ```bash
     npm run build
+    ```
+
+6. Run tests:
+    ```bash
+    npm test
     ```
 
 ## Prompt Wars Story

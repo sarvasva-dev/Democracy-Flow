@@ -2,6 +2,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { initUI, updateStageUI } from "./src/uiController.js";
 import { electionStages } from "./src/electionData.js";
+import { initGoogleServices } from "./src/googleServices.js";
 import './style.css';
 
 // Register GSAP Plugin
@@ -9,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Initialize Chat and UI
 initUI();
+initGoogleServices();
 
 // ----------------------------------------------------
 // Canvas Animation Logic (Retained from original)
